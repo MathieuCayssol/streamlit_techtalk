@@ -11,9 +11,6 @@ with st.sidebar:
     #date_slider = st.select_slider()
     st.text("You have selected : {}".format(macro_eco_metric))
 
-
-
-
 # Read the data
 def read_clean_df(path):
     df = pd.read_csv(path)
@@ -21,10 +18,7 @@ def read_clean_df(path):
     return df
 
 
-
 df_eco = read_clean_df("data/US_macroeconomics.csv")
-
-st.text(type(df_eco["date"][0]))
 
 st.header("Dataframe")
 
@@ -32,16 +26,18 @@ st.dataframe(df_eco)
 
 st.header("Line Chart to visualize indicators")
 
-start_date = pd.Timestamp(year=1980, month=1, day=1)
-end_date = pd.Timestamp(year=2022,month=5, day=1)
+start_date = dt.datetime(1980,5,1)
+end_date = dt.datetime(2022,5,1)
 
 st.text(start_date)
 
-"""st.slider(
+slider_date = st.slider(
     label="Date Range :",
     min_value=start_date, 
-    value=end_date,
+    value=(start_date, end_date),
     max_value=end_date
-)"""
+)
 
-st.line_chart(df_eco[["date", macro_eco_metric]].set_index("date"))
+df_eco_range = df_eco[df_eco["date"].between(slider_date[0], slider_date[1])]
+
+st.line_chart(df_eco_range[["date", macro_eco_metric]].set_index("date"))
