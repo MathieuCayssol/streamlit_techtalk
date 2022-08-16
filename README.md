@@ -6,4 +6,4 @@
 4. conda activate streamlit_env
 5. cd streamlit_techtalk/
 6. pip install -r requirements.txt
-7. streamlit run main_app.py
+7. streamlit run 01_🏠_main_app.py
