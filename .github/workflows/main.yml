@@ -1,0 +1,42 @@
+
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # daily
+  push:
+    branches:
+      - master  # Set a branch to deploy
+      - develop # Note has logic around deployment
+      
+jobs:
+  production:
+    runs-on: macos-latest
+    env:
+      RENV_PATHS_ROOT: ~/.local/share/renv
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9 # Specify the right version of python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+  
+      - name: Snakemake # python3 -m pip install --upgrade networkx pygraphvis
+        run: |
+          pip install virtualenv
+          virtualenv my_env
+          source my_env/bin/activate
+          pip cache purge
+          pip install --upgrade pip
+          pip uninstall -y setuptools
+          pip uninstall -y wheel
+          pip uninstall -y datrie
+          pip install setuptools --no-cache-dir
+          pip install wheel --no-cache-dir
+          pip install datrie --no-cache-dir
+          pip install snakemake==7.19.0
+          pip install pandas==1.4.2
+          pip install boto3==1.24.9
+          pip install requests==2.28
+          pip install PyYAML==3.13
+          pip install scikit-learn==1.1.1
+          pip install pyarrow
