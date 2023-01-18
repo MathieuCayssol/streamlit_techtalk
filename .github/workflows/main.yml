@@ -5,9 +5,7 @@ on:
     - cron: "0 0 * * *" # daily
   push:
     branches:
-      - master  # Set a branch to deploy
-      - develop # Note has logic around deployment
-      
+      - main
 jobs:
   production:
     runs-on: macos-latest
