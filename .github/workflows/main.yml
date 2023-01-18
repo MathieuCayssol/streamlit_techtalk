@@ -25,11 +25,7 @@ jobs:
           pip install virtualenv
           virtualenv my_env
           source my_env/bin/activate
-          pip cache purge
           pip install --upgrade pip
-          pip uninstall -y setuptools
-          pip uninstall -y wheel
-          pip uninstall -y datrie
           pip install setuptools --no-cache-dir
           pip install wheel --no-cache-dir
           pip install datrie --no-cache-dir
