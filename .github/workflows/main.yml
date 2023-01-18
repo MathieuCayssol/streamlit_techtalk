@@ -20,7 +20,7 @@ jobs:
   
       - name: Snakemake # python3 -m pip install --upgrade networkx pygraphvis
         run: |
-          brew uninstall gfortran
+          brew uninstall --ignore-dependencies gfortran
           brew install gcc
           pip install virtualenv
           virtualenv my_env
