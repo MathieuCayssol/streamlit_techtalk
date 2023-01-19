@@ -22,6 +22,7 @@ jobs:
         run: |
           brew uninstall --ignore-dependencies gfortran
           brew install gcc
+          update_c.sh
           pip install virtualenv
           virtualenv my_env
           source my_env/bin/activate
