@@ -20,6 +20,8 @@ jobs:
   
       - name: Snakemake # python3 -m pip install --upgrade networkx pygraphvis
         run: |
+          rm -rf /Library/Developer/CommandLineTools
+          xcode-select --install
           brew upgrade gcc
           pip install virtualenv
           virtualenv my_env
